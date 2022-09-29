@@ -10,3 +10,4 @@ See core/INSTALL.txt for information about single-site installation or
 multisite configuration.
 
 test
+tetsing
