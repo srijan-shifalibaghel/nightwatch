@@ -1,0 +1,26 @@
+name: opensocial
+recipe: drupal9
+config:
+  php: '7.4'
+  via: apache
+  webroot: html/
+  drush: ^10
+  xdebug: false
+proxy:
+  appserver:
+    - opensocial.lndo.site
+services:
+  opensocial:
+    type: mysql
+    portforward: true
+    config:
+      confd: lando/mysql/conf.d
+  appserver:
+    build:
+      - "cd /app && composer install"
+    run:
+      - composer self-update
+tooling:
+  "drush":
+    cmd: "/app/vendor/bin/drush --root=/app/docroot"
+    description: "Runs drush command. Ex: lando drush _yourcommand_"
